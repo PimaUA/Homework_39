@@ -15,7 +15,3 @@ logging:
     org.springframework.web.security: INFO
     org.springframework.web.exception_handling: INFO
 
-security:
-  user:
-    name: admin
-    password: password
