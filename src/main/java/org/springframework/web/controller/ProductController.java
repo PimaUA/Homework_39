@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.entities.Product;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.service.ProductService;
 
 import java.util.List;
 
@@ -14,54 +16,47 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    OrderService orderService;
+    ProductService productService;
 
-    @GetMapping("/orders")
-    public List<Order> showAllOrders() {
-        List<Order> orderList;
+    @GetMapping("/allProducts")
+    public List<Product> showAllProducts() {
+        List<Product> productList;
         try {
-            orderList = orderService.getAllOrders();
+            productList = productService.getAllProducts();
         } catch (ObjectNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No orders available ", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No products available ", e);
         }
-        return orderList;
+        return productList;
     }
 
-    @GetMapping("/orders/{id}")
-    public Order showOrderById(@PathVariable int id) {
-        Order order;
+    @GetMapping("/products/{id}")
+    public Product showProductById(@PathVariable int id) {
+        Product product;
         try {
-            order = orderService.getOrderById(id);
+            product = productService.getProductById(id);
         } catch (ObjectNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Order not found ", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product not found ", e);
         }
-        return order;
+        return product;
     }
 
-    @PostMapping("/orders")
-    public Order showAddedOrder(@RequestBody Order order) {
+    @PostMapping("/addProduct")
+    public Product showAddedProduct(@RequestBody Product product) {
         try {
-            orderService.addOrder(order);
+            productService.addProduct(product);
         } catch (ObjectNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Order not added ", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product not added ", e);
         }
-        return order;
+        return product;
     }
 
-    @DeleteMapping("/orders/{id}")
-    public String showDeletedOrder(@PathVariable int id) {
+    @DeleteMapping("/deleteProduct/{id}")
+    public String showDeletedProduct(@PathVariable int id) {
         try{
-            orderService.deleteOrder(id);}
+            productService.deleteProduct(id);}
         catch (ObjectNotFoundException e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Order not deleted ", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product not deleted ", e);
         }
-        return "Order with id " + id + " have been deleted";
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<OrderIncorrectData> handleException(Exception exception) {
-        OrderIncorrectData orderIncorrectData = new OrderIncorrectData();
-        orderIncorrectData.setInfo(exception.getMessage());
-        return new ResponseEntity<>(orderIncorrectData, HttpStatus.BAD_REQUEST);
+        return "Product with id " + id + " have been deleted";
     }
 }
