@@ -8,15 +8,15 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Entity(name="product")
-@Table(name="products")
+@Entity(name = "product")
+@Table(name = "products")
 public class Product {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private int id;
-@Column
+    @Column
     private String name;
-@Column
+    @Column
     private double cost;
 }

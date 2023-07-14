@@ -9,45 +9,28 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.*;
 
-
-public class MyUserPrincipal implements UserDetails {
+public class MyUserDetails implements UserDetails {
     private final User user;
     @Autowired
     private PasswordEncoder encoder;
 
-    public MyUserPrincipal(User user) {
+    public MyUserDetails(User user) {
         this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        /*Set<Role>roles = user.getRoles();
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-
-        for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-        }
-        return authorities;*/
-        Set<Role>roles=user.getRoles();
+        Set<Role> roles = user.getRoles();
         List<GrantedAuthority> authorities = new ArrayList<>();
-        for(Role role:roles){
-            authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getName()));
-}
-
-return authorities;
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
+        }
+        return authorities;
     }
-
-
-   /* @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
-        return Collections.singleton(authority);
-    }*/
 
     @Override
     public String getPassword() {
-       String encoded = new BCryptPasswordEncoder().encode(user.getPassword());
-       return encoded;
+        return new BCryptPasswordEncoder().encode(user.getPassword());
     }
 
     @Override

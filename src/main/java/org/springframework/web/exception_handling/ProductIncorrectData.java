@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class OrderIncorrectData {
+public class ProductIncorrectData {
     private String info;
 }

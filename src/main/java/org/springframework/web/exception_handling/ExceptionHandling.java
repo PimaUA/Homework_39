@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionHandling {
 
    @ExceptionHandler
-    public ResponseEntity<OrderIncorrectData> handleException(OrderNotFoundException exception) {
-        OrderIncorrectData orderIncorrectData = new OrderIncorrectData();
-        orderIncorrectData.setInfo(exception.getMessage());
-        return new ResponseEntity<>(orderIncorrectData, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ProductIncorrectData> handleException(ProductNotFoundException exception) {
+        ProductIncorrectData productIncorrectData = new ProductIncorrectData();
+        productIncorrectData.setInfo(exception.getMessage());
+        return new ResponseEntity<>(productIncorrectData, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
-    public ResponseEntity<OrderIncorrectData> handleException(OrderListNotFoundException exception) {
-        OrderIncorrectData orderIncorrectData = new OrderIncorrectData();
-        orderIncorrectData.setInfo(exception.getMessage());
-        return new ResponseEntity<>(orderIncorrectData, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ProductIncorrectData> handleException(ProductListNotFoundException exception) {
+        ProductIncorrectData productIncorrectData = new ProductIncorrectData();
+        productIncorrectData.setInfo(exception.getMessage());
+        return new ResponseEntity<>(productIncorrectData, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
-    public ResponseEntity<OrderIncorrectData> handleException(Exception exception) {
-        OrderIncorrectData orderIncorrectData = new OrderIncorrectData();
-        orderIncorrectData.setInfo(exception.getMessage());
-        return new ResponseEntity<>(orderIncorrectData, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ProductIncorrectData> handleException(Exception exception) {
+        ProductIncorrectData productIncorrectData = new ProductIncorrectData();
+        productIncorrectData.setInfo(exception.getMessage());
+        return new ResponseEntity<>(productIncorrectData, HttpStatus.BAD_REQUEST);
     }
 }

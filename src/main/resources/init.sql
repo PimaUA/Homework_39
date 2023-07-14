@@ -11,11 +11,10 @@ PRIMARY KEY(id)
 
 CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT,
-  email VARCHAR(50) NOT NULL,
   username VARCHAR(50) NOT NULL,
   password VARCHAR(50) NOT NULL,
   PRIMARY KEY (id),
-  UNIQUE (email)
+  UNIQUE (username)
 );
 
 CREATE TABLE roles (
@@ -31,7 +30,6 @@ FOREIGN KEY(users_id) REFERENCES users(id),
 FOREIGN KEY(roles_id) REFERENCES roles(id)
 );
 
-
 INSERT INTO products(name,cost)
 VALUES('coffee',10),
 ('tea',5),
@@ -44,13 +42,13 @@ VALUES('coffee',10),
 ('lemonade',17),
 ('ice cream',16);
 
-INSERT INTO users(email,username,password)
-VALUES('frank.com','Frank','p@ss'),
-('bob.com','Bob','p@ss'),
-('kate.com','Kate','pass'),
-('michael.com','Michael','pass'),
-('bob2.com','Bob','pass'),
-('jimmy.com','Jimmy','pass');
+INSERT INTO users(username,password)
+VALUES('Frank','p@ss'),
+('Bob','p@ss'),
+('Kate','pass'),
+('Michael','pass'),
+('Billy','pass'),
+('Jimmy','pass');
 
 INSERT INTO roles(role)
 VALUES('ADMIN'),
