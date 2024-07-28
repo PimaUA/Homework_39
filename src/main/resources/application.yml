@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    password: root
+    url: jdbc:mysql://localhost:3306/homework_39
+    username: root
+
+logging:
+  file.name: src/logs/dev_app.log
+  level:
+    org.springframework.web: INFO
+    org.springframework.web.controller: INFO
+    org.springframework.web.entities: INFO
+    org.springframework.web.repository: INFO
+    org.springframework.web.service: INFO
+    org.springframework.web.configurations: INFO
+    org.springframework.web.exception_handling: INFO
